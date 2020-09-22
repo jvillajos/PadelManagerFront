@@ -4,8 +4,8 @@ import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 const routes: Routes = [
   { path: 'home', component: HomeComponent},
-  { path: 'auth', loadChildren: './auth/auth.module#AuthModule'},
   { path: 'profile', component: ProfileComponent },
+  { path: 'auth', loadChildren: './components/auth/auth.module#AuthModule'},
   { path: '**', pathMatch: 'full', redirectTo: ''}
 ];
 

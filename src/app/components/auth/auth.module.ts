@@ -8,19 +8,18 @@ import { AuthService } from './auth.service';
 import { AuthGuard } from './auth.guard';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
-import { RouterModule } from '@angular/router';
 
 @NgModule({
+  imports: [
+    CommonModule,
+    AuthRoutingModule
+  ],
   declarations: [
     AuthComponent,
     RegisterComponent,
     LoginComponent,
   ],
-  imports: [
-    CommonModule,
-    RouterModule,
-    AuthRoutingModule
-  ],
+
   exports: [
     AuthComponent,
     RegisterComponent,
