@@ -9,19 +9,23 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { AuthModule } from './components/auth/auth.module';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { AlertComponent } from './components/shared/Alert/alert.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    AlertComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
     AppRoutingModule,
     RouterModule,
+    HttpClientModule,
     AuthModule
   ],
   providers: [],
