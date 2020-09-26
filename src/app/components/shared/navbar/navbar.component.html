@@ -13,13 +13,20 @@
                 <a class="nav-link" routerLink="about">About</a>
             </li>
         </ul>
-        <ul class="navbar-nav">
+        <ul class="navbar-nav" *ngIf="!isLogin">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/auth/login">Login</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/auth/register">Register</a>
+                </li>
+            </ul>
+        </ul>
+        <ul class="navbar-nav" *ngIf="isLogin">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" (click)='logout()'>Logout</a>
                 </li>
             </ul>
         </ul>
