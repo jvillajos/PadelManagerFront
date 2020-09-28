@@ -27,6 +27,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     RegisterComponent,
     LoginComponent
   ],
-  providers: [AuthService, AuthGuard]
+  providers: [AuthService]
+  // providers: [AuthService, AuthGuard]
 })
 export class AuthModule { }

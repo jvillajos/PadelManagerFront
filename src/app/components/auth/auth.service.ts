@@ -11,23 +11,23 @@ import { User } from 'src/app/models/User';
 })
 export class AuthService {
   private currentUserSubject: BehaviorSubject<User>;
-  private isLoginSubject: BehaviorSubject<boolean>;
+  public isLoginSubject = new BehaviorSubject<boolean>(false);
   public currentUser: Observable<User>;
-  public isLogin: Observable<boolean>;
 
   constructor(private http: HttpClient) {
       this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-      this.isLoginSubject = new BehaviorSubject<boolean>(this.isValidUser());
       this.currentUser = this.currentUserSubject.asObservable();
-      this.isLogin = this.isLoginSubject.asObservable();
+      this.isLoginSubject.next(this.currentUserSubject.value != null);
+      console.log('Current User:');
+      console.log(this.currentUser);
   }
 
   public get currentUserValue(): User {
-      return this.currentUserSubject.value;
-  }
+    return this.currentUserSubject.value;
+}
 
-  isValidUser(): boolean {
-    return this.currentUser != null;
+  get isAuthenticated() {
+    return this.isLoginSubject.value;
   }
 
   register(registerUserDto: any) {
@@ -41,6 +41,8 @@ export class AuthService {
             localStorage.setItem('currentUser', JSON.stringify(user));
             this.currentUserSubject.next(user);
             this.isLoginSubject.next(true);
+            console.log('________________Log in___________________');
+            console.log(this.isLoginSubject);
             return user;
         }));
   }
@@ -50,5 +52,7 @@ export class AuthService {
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
     this.isLoginSubject.next(false);
+    console.log('_______________Logout_____________');
+    console.log(this.isLoginSubject);
   }
 }
