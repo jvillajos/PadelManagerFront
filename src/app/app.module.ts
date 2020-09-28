@@ -11,6 +11,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AlertComponent } from './components/shared/Alert/alert.component';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthGuard } from './components/auth/auth.guard';
+import { AuthService } from './components/auth/auth.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     AuthModule
   ],
-  providers: [],
+  providers: [AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

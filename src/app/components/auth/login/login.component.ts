@@ -6,8 +6,8 @@ import { first } from 'rxjs/operators';
 import { AuthService } from '../auth.service';
 import { AlertService } from 'src/app/services/alert.service';
 
-@Component({ 
-  templateUrl: 'login.component.html' 
+@Component({
+  templateUrl: 'login.component.html'
 })
 export class LoginComponent implements OnInit {
     loginForm: FormGroup;
@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
         });
 
         // get return url from route parameters or default to '/'
-        this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+        this.returnUrl = this.route.snapshot.queryParams['home'] || '/';
     }
 
     // convenience getter for easy access to form fields
@@ -54,12 +54,13 @@ export class LoginComponent implements OnInit {
 
         this.loading = true;
         this.authService.login(this.f.username.value, this.f.password.value)
-            .pipe(first())
             .subscribe(
                 data => {
-                    this.router.navigate([this.returnUrl]);
+                    console.log(this.returnUrl);
+                    this.router.navigate(['/']);
                 },
                 error => {
+                    console.log(error);
                     this.alertService.error(error);
                     this.loading = false;
                 });
