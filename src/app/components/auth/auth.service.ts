@@ -15,8 +15,6 @@ export class AuthService {
   public currentUser = this.currentUserSubject.asObservable();
 
   constructor(private http: HttpClient) {
-      console.log('Constructor AuthService Current User:');
-      console.log(this.currentUser);
   }
 
   public get currentUserValue(): User {
@@ -40,7 +38,11 @@ export class AuthService {
         .pipe(map(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('currentUser', JSON.stringify(user));
-            this.currentUserSubject.next(user);
+            const userEntity = new User();
+            userEntity.username = user.userName;
+            userEntity.token = user.token;
+
+            this.currentUserSubject.next(userEntity);
             return user;
         }));
   }

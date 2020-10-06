@@ -12,8 +12,8 @@
             <li class="nav-item" routerLinkActive='active'>
                 <a class="nav-link" routerLink="clup">Club</a>
             </li>
-            <li class="nav-item" routerLinkActive='active'>
-                <a class="nav-link" routerLink="Ranking">Ranking</a>
+            <li class="nav-item" routerLinkActive='active' *ngIf="user">
+                <a class="nav-link" routerLink="profile">Ranking</a>
             </li>
         </ul>
 

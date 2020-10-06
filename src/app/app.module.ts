@@ -10,9 +10,11 @@ import { AuthModule } from './components/auth/auth.module';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AlertComponent } from './components/shared/Alert/alert.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './components/auth/auth.guard';
 import { AuthService } from './components/auth/auth.service';
+import { JwtInterceptor } from './helpers/jwt.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -30,7 +32,15 @@ import { AuthService } from './components/auth/auth.service';
     HttpClientModule,
     AuthModule
   ],
-  providers: [AuthService, AuthGuard],
+  providers: [
+    AuthService,
+    AuthGuard,
+    [{
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

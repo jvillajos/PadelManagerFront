@@ -1,1 +1,10 @@
-<p>profile works!</p>
+<div class="card-columns">
+
+    <div class="card" *ngFor="let ranking of rankings">
+        <div class="card-body">
+            <h5 class="card-title">{{ranking.rankingName}}</h5>
+            <p class="card-text">{{ranking.description}}</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+</div>
