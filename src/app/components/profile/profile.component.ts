@@ -16,13 +16,21 @@ export class ProfileComponent implements OnInit {
               private authService: AuthService) { }
 
   ngOnInit(): void {
-    this.rankingService.getClubsByUser(this.authService.currentUserValue.username)
-    .subscribe(p =>
-      {
-        this.rankings = p.slice();
-        console.log(p);
-      });
+    const username = this.authService.currentUserValue.userName;
+    if (username !== undefined) {
+      this.rankingService.getClubsByUser(this.authService.currentUserValue.userName)
+                        .subscribe(p =>
+                        {
+                          this.rankings = p.slice();
+                          console.log(p);
+                        });
+    }
   }
+
+  addRanking(): void {
+    console.log('Añadir Ranking');
+  }
+
 
 
 }

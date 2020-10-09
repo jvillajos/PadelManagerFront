@@ -4,29 +4,30 @@ import { environment } from '../../../environments/environment';
 import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from 'src/app/models/User';
-
+import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+  private currentUserSubject = new BehaviorSubject<User>(this.getCurrentUser());
   public isLoginSubject = new BehaviorSubject<boolean>(false);
   public currentUser = this.currentUserSubject.asObservable();
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private cookieService: CookieService) {
   }
 
-  public get currentUserValue(): User {
-    return this.currentUserSubject.value;
+  public get currentUserValue(): any {
+    return this.getCurrentUser();
   }
 
   get isAuthenticated() {
     return this.isLoginSubject.value;
   }
 
-  getCurrentUser(): User {
-    return localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser')) : undefined;
+  getCurrentUser(): any {
+    return this.cookieService.get('currentUser') ? JSON.parse(this.cookieService.get('currentUser')) : undefined;
   }
 
   register(registerUserDto: any) {
@@ -37,19 +38,15 @@ export class AuthService {
     return this.http.post<any>(`${environment.API_URL}/authentication/login`, { username, password })
         .pipe(map(user => {
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('currentUser', JSON.stringify(user));
-            const userEntity = new User();
-            userEntity.username = user.userName;
-            userEntity.token = user.token;
-
-            this.currentUserSubject.next(userEntity);
+            this.cookieService.set('currentUser', JSON.stringify(user));
+            this.currentUserSubject.next(user);
             return user;
         }));
   }
 
   logout() {
-    // remove user from local storage and set current user to null
-    localStorage.removeItem('currentUser');
+    // remove user from cookie service and set current user to null
+    this.cookieService.delete('currentUser');
     this.currentUserSubject.next(null);
     this.isLoginSubject.next(false);
   }

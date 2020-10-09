@@ -9,6 +9,7 @@ import { AuthGuard } from './auth.guard';
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthComponent } from './auth.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   imports: [
@@ -27,5 +28,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     RegisterComponent,
     LoginComponent
   ],
+  providers: [
+    CookieService
+  ]
 })
 export class AuthModule { }

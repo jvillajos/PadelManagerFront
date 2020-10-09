@@ -18,12 +18,24 @@
         </ul>
 
         <span class="navbar-text">
-            <button class="btn btn-outline-primary" routerLink='/auth/login' *ngIf="!user">
+            <button class="btn btn-outline-light" routerLink='/auth/login' *ngIf="!user">
                 Login
             </button>
-            <button class="btn btn-outline-danger" (click)="logout()" *ngIf="user">
-                Logout
-            </button>
+            <div class="btn-group" *ngIf="user">
+              <button type="button" class="btn btn-outline-dark btn-circle dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="../../../../assets/img/profile.png" height="32px">
+              </button>
+              <div class="dropdown-menu dropdown-primary dropdown-menu-right" style="min-width: 250px;">
+                <div class="container mt3" >
+                  <p><b>Nombre:</b> {{user.userName}}</p>
+                  <p><b>Email:</b> {{user.email}}</p>
+                </div>
+                <div class="dropdown-divider"></div>
+                <button class="dropdown-item" routerLink='/auth/user'>Profile</button>
+                <div class="dropdown-divider"></div>
+                <button class="dropdown-item" (click)="logout()">Cerrar Sesión</button>
+              </div>
+            </div>
         </span>
     </div>
 </nav>

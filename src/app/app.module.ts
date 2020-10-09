@@ -14,6 +14,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthGuard } from './components/auth/auth.guard';
 import { AuthService } from './components/auth/auth.service';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { CookieService } from 'ngx-cookie-service';
+import { ErrorInterceptor } from './helpers/error.interceptor';
 
 
 @NgModule({
@@ -33,11 +35,17 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
     AuthModule
   ],
   providers: [
+    CookieService,
     AuthService,
     AuthGuard,
     [{
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
       multi: true
     }],
   ],
