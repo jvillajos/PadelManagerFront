@@ -16,6 +16,7 @@ import { AuthService } from './components/auth/auth.service';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { CookieService } from 'ngx-cookie-service';
 import { ErrorInterceptor } from './helpers/error.interceptor';
+import { ModalModule } from './components/shared/modal/modal.module';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
     AppRoutingModule,
     RouterModule,
     HttpClientModule,
-    AuthModule
+    AuthModule,
+    ModalModule
   ],
   providers: [
     CookieService,
