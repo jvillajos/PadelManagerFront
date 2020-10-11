@@ -1,6 +1,6 @@
 <div class="container">
     <div class="d-flex justify-content-end">
-        <button class="btn btn-circle" data-toggle="modal" data-target="#rankingForm">Añadir</button>
+        <button class="btn btn-circle" (click)="addRanking()">Añadir</button>
     </div>
     <div class="container m-3">
         <div class="row">
@@ -9,10 +9,10 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ranking.rankingName}}</h5>
                         <p class="card-text">{{ranking.description}}</p>
+                        <p class="card-text">Fecha {{ ranking.startDate | date:shortDate }} - {{ranking.endDate | date:shortDate}}</p>
                     </div>
-                    <div class="d-flex justify-content-between">
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                        <button class="btn">
+                    <div class="d-flex justify-content-end">
+                        <button class="btn" (click)="editRanking(ranking)">
                           <i class="lar la-edit"></i>
                         </button>
                     </div>
@@ -21,24 +21,5 @@
 
         </div>
     </div>
-    <app-ranking-form id="rankingForm"></app-ranking-form>
-    <!-- <div class="modal fade" id="rankingForm" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
-                </div>
-            </div>
-        </div>
-    </div> -->
+    <app-ranking-form #rankingForm></app-ranking-form>
 </div>

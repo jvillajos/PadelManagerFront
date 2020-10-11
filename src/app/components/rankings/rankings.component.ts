@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { ClubService } from '../../services/club.service';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { Ranking } from 'src/app/models/Ranking';
 import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RankingFormComponent } from './pages/ranking-form/ranking-form.component';
 
 @Component({
@@ -13,13 +12,12 @@ import { RankingFormComponent } from './pages/ranking-form/ranking-form.componen
   styleUrls: ['./rankings.component.scss']
 })
 export class RankingsComponent implements OnInit {
-  rankingForm: FormGroup;
+  @ViewChild('rankingForm') rankingForm: RankingFormComponent;
   rankings: any[];
 
   constructor(private rankingService: ClubService,
               private authService: AuthService,
-              private formBuilder: FormBuilder,
-              private modal: NgbModal) {
+              private formBuilder: FormBuilder) {
     }
 
   ngOnInit(): void {
@@ -39,12 +37,16 @@ export class RankingsComponent implements OnInit {
     console.log('Añadir Ranking');
   }
 
+  editRanking(ranking: any): void {
+    this.openForm(ranking);
+  }
+
   openForm(ranking: Ranking) {
     if (!ranking){
-      this.modal.open(RankingFormComponent);
+      this.rankingForm.open(undefined);
     }
     else {
-
+      this.rankingForm.open(ranking);
     }
   }
 

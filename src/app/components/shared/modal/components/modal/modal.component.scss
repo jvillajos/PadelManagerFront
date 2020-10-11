@@ -1,0 +1,346 @@
+@mixin responsive {
+    @media (max-width: 1020px) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: 1020px) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media (max-width: 767px) {
+        @content;
+    }
+}
+
+@mixin mobile-to-lg {
+    @media (max-width: 1200px) {
+        @content;
+    }
+}
+
+$color-blue-5: #074B98;
+.fade.in {
+    animation: fadeInFromNone 0.3s ease-in-out;
+}
+
+.modal.fade.in {
+    opacity: 1;
+}
+
+.modal.in .modal-dialog {
+    -webkit-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 0);
+}
+
+.modal-backdrop.fade.in {
+    opacity: 0.5 !important;
+    animation: fadeInFromBack 0.3s ease-in-out;
+}
+
+.modal-backdrop.fade {
+    opacity: 0.5 !important;
+}
+
+.modal-dialog,
+.modal-content {
+    max-width: 90vw;
+    max-height: 90vh;
+}
+
+.modal-body {
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.modal-dialog-centered {
+    margin-left: 5vw;
+}
+
+.hide-footer {
+    .modal-footer {
+        display: none;
+    }
+}
+
+@keyframes fadeInFromNone {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+    1% {
+        display: block;
+        opacity: 0;
+    }
+    100% {
+        display: block;
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInFromBack {
+    0% {
+        display: none;
+        opacity: 0;
+    }
+    1% {
+        display: block;
+        opacity: 0;
+    }
+    100% {
+        display: block;
+        opacity: .5;
+    }
+}
+
+.modal-header {
+    padding: 1rem;
+    @include mobile {
+        padding: 11px;
+    }
+    .modal-title {
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: rgb(46, 46, 46);
+    }
+    span,
+    a>i.la {
+        font-weight: bold;
+    }
+}
+
+.modal-body {
+    @include mobile {
+        padding: 0.5rem;
+    }
+}
+
+.modal-body::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(116, 116, 116, 0.3);
+    border-radius: 15px;
+    background-color: #F5F5F5;
+}
+
+.modal-body::-webkit-scrollbar {
+    width: 5px;
+    background-color: #F5F5F5;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+    border-radius: 15px;
+    box-shadow: inset 0 0 6px rgba(116, 116, 116, 0.3);
+    background-color: rgb(112, 112, 112);
+}
+
+.notes__modal {
+    .modal-backdrop {
+        z-index: 1052;
+    }
+    .modal {
+        z-index: 1053;
+        .modal-body {
+            @include mobile {
+                padding: 1rem !important;
+            }
+        }
+        .modal-dialog {
+            max-width: 600px;
+            margin-left: auto;
+            @include mobile {
+                max-width: 90vw !important;
+                margin-left: 5vw !important;
+            }
+            .modal-content {
+                .modal-header {
+                    button {
+                        margin-right: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.kpi-modal {
+    .modal.in.fade {
+        display: flex !important;
+        align-items: center;
+    }
+    .modal-dialog {
+        width: inherit;
+        min-width: 600px;
+        max-width: 1400px;
+        margin-left: auto;
+        @include mobile {
+            min-width: auto;
+        }
+    }
+}
+
+.reduced__modal {
+    .modal {
+        .modal-body {
+            @include mobile {
+                padding: 1rem !important;
+            }
+        }
+        .modal-dialog {
+            max-width: 600px;
+            margin-left: auto;
+            @include mobile {
+                max-width: 90vw !important;
+                margin-left: 5vw !important;
+            }
+            .modal-content {
+                .modal-header {
+                    button {
+                        margin-right: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.event__modal {
+    .modal-dialog,
+    .modal-content {
+        margin: auto;
+        max-width: 600px !important;
+        @include responsive {
+            max-width: 600px !important;
+        }
+    }
+}
+
+.modal-kpi {
+    max-width: 800px !important;
+    @include mobile {
+        max-width: 90vw !important;
+        margin-left: 5vw !important;
+    }
+    .modal-title {
+        color: #3f4047;
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+    .modal-value {
+        color: $color-blue-5;
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+    .modal-main-title {
+        color: #3f4047;
+        font-size: 1.3rem;
+        font-weight: bold;
+    }
+    .modal-main-value {
+        color: $color-blue-5;
+        font-size: 1.3rem;
+        font-weight: bold;
+    }
+}
+
+.chart-modal {
+    margin: 5vh;
+    .modal-body {
+        display: flex;
+    }
+    @include mobile {
+        margin: 1rem;
+    }
+    .modal-dialog,
+    .modal-content {
+        max-width: inherit;
+        min-height: 90vh;
+        @include mobile {
+            min-height: 500px;
+        }
+    }
+}
+
+.modal-meters {
+    .modal-dialog {
+        .modal-content {
+            max-width: 100%;
+            min-height: 90vh;
+        }
+    }
+}
+
+.modal-admin {
+    .modal-dialog {
+        .modal-content {
+            max-width: 660px !important;
+            margin: auto !important;
+        }
+    }
+}
+
+.modal-image.modal-dialog {
+    min-width: 100vw !important;
+    min-height: 100vh !important;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    background: transparent;
+    border: none;
+    margin: 0 !important;
+    .modal-header {
+        display: none;
+    }
+    .modal-content {
+        min-width: 100vw !important;
+        min-height: 100vh !important;
+        max-width: 100vw !important;
+        max-height: 100vh !important;
+        background: #000000b8;
+        border: none;
+        margin: none;
+    }
+    .modal-body {
+        padding: 1rem 5rem;
+        @include responsive {
+            padding: 1rem;
+        }
+        .close-modal {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+    }
+}
+
+.users_modal {
+    .modal-content {
+        min-height: 90vh;
+    }
+    .modal-body {
+        flex: 1;
+        display: flex;
+    }
+}
+
+.file-explorer-modal__is-pdf-viewer-opened {
+    height: 18vh;
+}
+
+.swal2-confirm {
+    margin-right: 1rem;
+}
+
+.modal_in_modal {
+    .modal {
+        z-index: 1055;
+    }
+    .modal-backdrop {
+        z-index: 1054;
+    }
+}
+
+.swal2-container {
+    z-index: 1065;
+}

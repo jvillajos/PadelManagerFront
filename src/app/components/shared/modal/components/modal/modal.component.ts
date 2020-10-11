@@ -3,6 +3,7 @@ import { Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChil
 @Component({
     // tslint:disable-next-line:component-selector
     selector: 'modal',
+    styleUrls: ['modal.component.scss'],
     templateUrl: 'modal.component.html'
 })
 
