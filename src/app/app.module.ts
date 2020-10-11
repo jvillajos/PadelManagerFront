@@ -5,7 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/shared/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
-import { ProfileComponent } from './components/profile/profile.component';
+import { RankingsComponent } from './components/rankings/rankings.component';
+import { RankingFormComponent } from './components/rankings/pages/ranking-form/ranking-form.component';
 import { AuthModule } from './components/auth/auth.module';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -17,6 +18,7 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { CookieService } from 'ngx-cookie-service';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { ModalModule } from './components/shared/modal/modal.module';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -24,8 +26,9 @@ import { ModalModule } from './components/shared/modal/modal.module';
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    ProfileComponent,
-    AlertComponent
+    RankingsComponent,
+    AlertComponent,
+    RankingFormComponent
   ],
   imports: [
     CommonModule,
@@ -34,7 +37,8 @@ import { ModalModule } from './components/shared/modal/modal.module';
     RouterModule,
     HttpClientModule,
     AuthModule,
-    ModalModule
+    ModalModule,
+    FormsModule
   ],
   providers: [
     CookieService,

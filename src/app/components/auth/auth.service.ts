@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,8 @@ export class AuthService {
   public currentUser = this.currentUserSubject.asObservable();
 
   constructor(private http: HttpClient,
-              private cookieService: CookieService) {
+              private cookieService: CookieService,
+              private router: Router) {
   }
 
   public get currentUserValue(): any {
@@ -49,5 +51,6 @@ export class AuthService {
     this.cookieService.delete('currentUser');
     this.currentUserSubject.next(null);
     this.isLoginSubject.next(false);
+    this.router.navigate(['/auth/login']);
   }
 }
