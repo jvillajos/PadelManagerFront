@@ -47,6 +47,12 @@ body {
     border-radius: 2rem;
 }
 
+.form-label-group *:focus {
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
 .form-label-group>input,
 .form-label-group>label {
     padding: var(--input-padding-y) var(--input-padding-x);
@@ -158,3 +164,5 @@ body {
         color: #777;
     }
 }
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
