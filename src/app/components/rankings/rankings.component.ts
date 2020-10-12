@@ -1,5 +1,5 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
-import { ClubService } from '../../services/club.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { RankingService } from '../../services/ranking.service';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { Ranking } from 'src/app/models/Ranking';
@@ -13,9 +13,9 @@ import { RankingFormComponent } from './pages/ranking-form/ranking-form.componen
 })
 export class RankingsComponent implements OnInit {
   @ViewChild('rankingForm') rankingForm: RankingFormComponent;
-  rankings: any[];
+  rankings: Ranking[];
 
-  constructor(private rankingService: ClubService,
+  constructor(private rankingService: RankingService,
               private authService: AuthService,
               private formBuilder: FormBuilder) {
     }
@@ -23,7 +23,7 @@ export class RankingsComponent implements OnInit {
   ngOnInit(): void {
     const username = this.authService.currentUserValue.userName;
     if (username !== undefined) {
-      this.rankingService.getClubsByUser(this.authService.currentUserValue.userName)
+      this.rankingService.getRankingsByUser(this.authService.currentUserValue.userName)
                         .subscribe(p =>
                         {
                           this.rankings = p.slice();

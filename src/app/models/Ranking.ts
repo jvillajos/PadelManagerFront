@@ -1,6 +1,10 @@
 export class Ranking {
-    name: string;
+    rankingId: number;
+    userName: string;
+    rankingName: string;
     description: string;
-    StartDate: Date;
-    EndDate: Date;
+    location: string;
+    cp: number;
+    startDate: Date;
+    endDate: Date;
 }
