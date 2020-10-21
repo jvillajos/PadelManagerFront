@@ -1,13 +1,13 @@
-<div class="container mt-2">
-    <div class="d-flex justify-content-end">
+<div class="container-fluid mt-2">
+    <div class="d-flex justify-content-end pr-3">
         <button class="btn btn-outline-primary" (click)="addRanking()">
           <i class="las la-plus-circle"></i>
         </button>
     </div>
-    <div class="container m-3">
-        <div class="row">
+    <div class="d-flex justify-content-center m-3">
+        <div class="row mt-2">
             <div class="col-sm-6" *ngFor="let ranking of rankings">
-                <div class="card">
+                <div class="card mt-2">
                     <div class="card-body">
                         <h5 class="card-title">{{ranking.rankingName}}</h5>
                         <p class="card-text">{{ranking.description}}</p>
@@ -23,5 +23,5 @@
 
         </div>
     </div>
-    <app-ranking-form #rankingForm></app-ranking-form>
+    <app-ranking-form #rankingForm (rankingAction)="refresh($event)"></app-ranking-form>
 </div>

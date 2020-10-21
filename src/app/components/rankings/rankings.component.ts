@@ -50,6 +50,20 @@ export class RankingsComponent implements OnInit {
     }
   }
 
+  refresh(event: boolean){
+    if (event) {
+      const username = this.authService.currentUserValue.userName;
+      if (username !== undefined) {
+        this.rankingService.getRankingsByUser(this.authService.currentUserValue.userName)
+                          .subscribe(p =>
+                          {
+                            this.rankings = p.slice();
+                            console.log(p);
+                          });
+      }
+    }
+  }
+
 
 
 }

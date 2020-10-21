@@ -22,9 +22,12 @@ export class RankingService {
     return this.http.get<Array<Ranking>>(`${environment.API_URL}/ranking/GetRankingsByUser`, { params });
   }
 
-  createRanking(ranking: Ranking): void {
-    this.http.post<any>(`${environment.API_URL}/ranking/CreateRanking`, ranking, { headers: this.headers})
-             .subscribe(response => console.log(response));
+  createRanking(ranking: Ranking): Observable<any> {
+    return this.http.post<any>(`${environment.API_URL}/ranking/CreateRanking`, ranking, { headers: this.headers});
+  }
+
+  updateRanking(ranking: Ranking): Observable<any> {
+    return this.http.post<any>(`${environment.API_URL}/ranking/UpdateRanking`, ranking, { headers: this.headers});
   }
 
 }
