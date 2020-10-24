@@ -19,6 +19,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { ModalModule } from './components/shared/modal/modal.module';
 import { FormsModule } from '@angular/forms';
+import { RankingComponent } from './components/rankings/ranking/ranking.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     RankingsComponent,
     AlertComponent,
-    RankingFormComponent
+    RankingFormComponent,
+    RankingComponent
   ],
   imports: [
     CommonModule,

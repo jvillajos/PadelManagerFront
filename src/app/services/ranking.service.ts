@@ -9,6 +9,7 @@ import { Ranking } from '../models/Ranking';
   providedIn: 'root'
 })
 export class RankingService {
+  
 
   headers: HttpHeaders;
   constructor(private http: HttpClient) {
@@ -17,9 +18,14 @@ export class RankingService {
             .set('Accept', 'application/json');
    }
 
-  getRankingsByUser(username: string): Observable<any> {
+  getRankingsByUser(username: string): Observable<Ranking[]> {
     const params = new HttpParams().append('username', username);
     return this.http.get<Array<Ranking>>(`${environment.API_URL}/ranking/GetRankingsByUser`, { params });
+  }
+
+  getRankingById(rankingId: number): Observable<Ranking> {
+    const params = new HttpParams().append('rankingId', rankingId.toString());
+    return this.http.get<Ranking>(`${environment.API_URL}/ranking/GetRankingById`, { params });
   }
 
   createRanking(ranking: Ranking): void {
