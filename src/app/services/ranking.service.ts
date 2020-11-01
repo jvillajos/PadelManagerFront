@@ -33,4 +33,8 @@ export class RankingService {
              .subscribe(response => console.log(response));
   }
 
+  updateRanking(ranking: Ranking): Observable<any> {
+    return this.http.post<any>(`${environment.API_URL}/ranking/UpdateRanking`, ranking, { headers: this.headers});
+  }
+
 }

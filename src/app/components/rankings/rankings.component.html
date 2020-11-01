@@ -1,14 +1,30 @@
 <div class="container-fluid mt-2">
+<<<<<<< HEAD
     <div class="d-flex justify-content-end">
+=======
+    <div class="d-flex justify-content-end pr-3">
+>>>>>>> 918e029a1ef5b78ef9958c313c3daa25d88b2fbb
         <button class="btn btn-outline-primary" (click)="addRanking()">
             <i class="las la-plus-circle"></i>
         </button>
     </div>
+<<<<<<< HEAD
 
     <div class="container m-3">
         <div class="row">
             <div class="col-sm-6" *ngFor="let ranking of rankings">
                 <div class="card">
+=======
+    <div class="d-flex justify-content-center m-3">
+        <div class="row mt-2">
+            <div class="col-sm-6" *ngFor="let ranking of rankings">
+                <div class="card mt-2">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ranking.rankingName}}</h5>
+                        <p class="card-text">{{ranking.description}}</p>
+                        <p class="card-text">Fecha: {{ ranking.startDate | date:'dd/MM/yyyy' }} - {{ranking.endDate | date:'dd/MM/yyyy'}}</p>
+                    </div>
+>>>>>>> 918e029a1ef5b78ef9958c313c3daa25d88b2fbb
                     <div class="d-flex justify-content-end">
                         <a [routerLink]="['/ranking', ranking.rankingId]">
                             <i class="las la-expand"></i>
@@ -28,5 +44,5 @@
 
         </div>
     </div>
-    <app-ranking-form #rankingForm></app-ranking-form>
+    <app-ranking-form #rankingForm (rankingAction)="refresh($event)"></app-ranking-form>
 </div>

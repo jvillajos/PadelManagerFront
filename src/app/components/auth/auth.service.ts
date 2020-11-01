@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { map } from 'rxjs/operators';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { User } from 'src/app/models/User';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
@@ -43,6 +43,9 @@ export class AuthService {
             this.cookieService.set('currentUser', JSON.stringify(user));
             this.currentUserSubject.next(user);
             return user;
+        }), catchError((err: HttpErrorResponse) => {
+          console.log(err.message);
+          return throwError(err);
         }));
   }
 
