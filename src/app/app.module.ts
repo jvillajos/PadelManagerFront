@@ -20,6 +20,7 @@ import { ErrorInterceptor } from './helpers/error.interceptor';
 import { ModalModule } from './components/shared/modal/modal.module';
 import { FormsModule } from '@angular/forms';
 import { RankingComponent } from './components/rankings/ranking/ranking.component';
+import { UserManagementComponent } from './components/users/userManagement.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { RankingComponent } from './components/rankings/ranking/ranking.componen
     RankingsComponent,
     AlertComponent,
     RankingFormComponent,
-    RankingComponent
+    RankingComponent,
+    UserManagementComponent
   ],
   imports: [
     CommonModule,

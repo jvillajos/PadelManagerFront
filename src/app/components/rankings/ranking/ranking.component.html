@@ -1,1 +1,19 @@
-<p>ranking works!</p>
+<div class="container-flex mt-3">
+    <h3 class="display-5">{{ranking.name}}</h3>
+
+    <div class="row mt-2">
+        <div class="col-6">
+            <ul class="list-group">
+                <li class="list-group-item active" *ngFor="let rg of rankingGroups">{{rg.name}}}</li>
+            </ul>
+        </div>
+        <div class="col-6">
+            <ul class="list-group">
+                <li class="list-group-item active" *ngFor="let couple of couples">{{couple.name}}}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+
+    </div>
+</div>

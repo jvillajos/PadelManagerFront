@@ -4,13 +4,8 @@
 
 export const environment = {
   production: false,
-<<<<<<< HEAD
-  //API_URL: 'http://localhost:5000/api'
-  API_URL: 'https://padelmanagerapi.azurewebsites.net/api'
-=======
   API_URL: 'http://localhost:5000/api'
   //API_URL: 'https://padelmanagerapi.azurewebsites.net/api'
->>>>>>> 918e029a1ef5b78ef9958c313c3daa25d88b2fbb
 };
 
 /*

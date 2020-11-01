@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RankingService } from '../../../services/ranking.service';
+import { RankingGroup } from '../../../models/RankingGroup';
+import { Couple } from '../../../models/Couple';
 
 @Component({
   selector: 'app-ranking',
@@ -11,6 +13,8 @@ import { RankingService } from '../../../services/ranking.service';
 export class RankingComponent implements OnInit {
   rankingId: number;
   ranking: any;
+  rankingGroups: Array<RankingGroup>;
+  couples: Array<Couple>;
 
   constructor(private activatedRoute: ActivatedRoute,
               private rankingService: RankingService) {

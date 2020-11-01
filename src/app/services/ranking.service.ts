@@ -4,12 +4,12 @@ import { environment } from 'src/environments/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Ranking } from '../models/Ranking';
+import { RankingGroup } from '../models/RankingGroup';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RankingService {
-  
 
   headers: HttpHeaders;
   constructor(private http: HttpClient) {
@@ -20,21 +20,25 @@ export class RankingService {
 
   getRankingsByUser(username: string): Observable<Ranking[]> {
     const params = new HttpParams().append('username', username);
-    return this.http.get<Array<Ranking>>(`${environment.API_URL}/ranking/GetRankingsByUser`, { params });
+    return this.http.get<Array<Ranking>>(`${environment.API_URL}/ranking/GetRankingsByUser`, { params, headers: this.headers });
   }
 
   getRankingById(rankingId: number): Observable<Ranking> {
     const params = new HttpParams().append('rankingId', rankingId.toString());
-    return this.http.get<Ranking>(`${environment.API_URL}/ranking/GetRankingById`, { params });
+    return this.http.get<Ranking>(`${environment.API_URL}/ranking/GetRankingById`, { params, headers: this.headers });
   }
 
-  createRanking(ranking: Ranking): void {
-    this.http.post<any>(`${environment.API_URL}/ranking/CreateRanking`, ranking, { headers: this.headers})
-             .subscribe(response => console.log(response));
+  createRanking(ranking: Ranking): Observable<any> {
+    return this.http.post<any>(`${environment.API_URL}/ranking/CreateRanking`, ranking, { headers: this.headers});
   }
 
   updateRanking(ranking: Ranking): Observable<any> {
     return this.http.post<any>(`${environment.API_URL}/ranking/UpdateRanking`, ranking, { headers: this.headers});
+  }
+
+  getRankingGroupsByUser(username: string): Observable<RankingGroup[]> {
+    const params = new HttpParams().append('username', username);
+    return this.http.get<Array<RankingGroup>>(`${environment.API_URL}/ranking/GetRankingGroupsByUser`, { params, headers: this.headers });
   }
 
 }
