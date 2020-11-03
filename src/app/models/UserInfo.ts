@@ -3,4 +3,5 @@ export class UserInfo {
     userName: string;
     email: string;
     playerName: string;
+    phoneNumber: string;
 }

@@ -18,9 +18,10 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
 import { CookieService } from 'ngx-cookie-service';
 import { ErrorInterceptor } from './helpers/error.interceptor';
 import { ModalModule } from './components/shared/modal/modal.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RankingComponent } from './components/rankings/ranking/ranking.component';
 import { UserManagementComponent } from './components/users/userManagement.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -42,7 +43,9 @@ import { UserManagementComponent } from './components/users/userManagement.compo
     HttpClientModule,
     AuthModule,
     ModalModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [
     CookieService,

@@ -1,15 +1,39 @@
 <p>Gestion de Usuarios</p>
-<div class="row">
-    <input type="text" name="search" placeholder="Buscar usuarios..." ngModel="" />
-    <span><i class="la la-search"></i></span>
-</div>
-<div class="row">
-    <ul class="users">
-        <li *ngFor="let userInfo of users" [class.selected]="userInfo === selectedUser" id="{{userInfo.id}}" (click)="onSelect(userInfo)">
-            <span class="mb-1">{{userInfo.playerName}}</span>
-            <button class="btn" (click)="deleteUser(userInfo)">
-            <i class="las la-trash"></i>
-        </button>
-        </li>
-    </ul>
+<div>
+    <form>
+        <div class="form-group form-inline">
+            Buscar usuario: <input class="form-control ml-2" type="text" placeholder="Buscar..." [formControl]="filter" />
+        </div>
+    </form>
+    <table class="table table-sm table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Usuario</th>
+                <th scope="col">Nombre de Usuario</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">Email</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let userInfo of filteredUsers | async; index as i">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>
+                    <ngb-highlight [result]="userInfo.playerName" [term]="filter.value"></ngb-highlight>
+                </td>
+                <td>
+                    <ngb-highlight [result]="userInfo.userName" [term]="filter.value"></ngb-highlight>
+                </td>
+                <td>
+                    <ngb-highlight [result]="userInfo.phoneNumber" [term]="filter.value"></ngb-highlight>
+                </td>
+                <td>
+                    <ngb-highlight [result]="userInfo.email" [term]="filter.value"></ngb-highlight>
+                </td>
+                <td>
+                    <button class="btn btn-sm" (click)="deleteUser(userInfo)"><i class="las la-trash"></i></button></td>
+            </tr>
+        </tbody>
+    </table>
 </div>
