@@ -3,7 +3,6 @@ import { RankingService } from '../../services/ranking.service';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth/auth.service';
 import { Ranking } from 'src/app/models/Ranking';
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { RankingFormComponent } from './pages/ranking-form/ranking-form.component';
 
 @Component({
@@ -16,8 +15,7 @@ export class RankingsComponent implements OnInit {
   rankings: Ranking[];
 
   constructor(private rankingService: RankingService,
-              private authService: AuthService,
-              private formBuilder: FormBuilder) {
+              private authService: AuthService) {
     }
 
   ngOnInit(): void {

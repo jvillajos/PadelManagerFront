@@ -1,14 +1,23 @@
 <p>Gestion de Usuarios</p>
 <div>
-    <form>
-        <div class="form-group form-inline">
-            Buscar usuario: <input class="form-control ml-2" type="text" placeholder="Buscar..." [formControl]="filter" />
+    <div class="container-fluid">
+        <div class="row justify-content-between">
+            <div class="col4">
+                <div class="form-group form-inline">
+                    <input class="form-control" type="text" placeholder="Buscar..." name="searchValue" [(ngModel)]="searchValue" />
+                </div>
+            </div>
+            <div class="col4">
+                <button class="btn" (click)="addUser()">
+                    <i class="las la-plus-circle"></i>
+                </button>
+            </div>
         </div>
-    </form>
+    </div>
+
     <table class="table table-sm table-striped">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">#</th>
                 <th scope="col">Usuario</th>
                 <th scope="col">Nombre de Usuario</th>
                 <th scope="col">Telefono</th>
@@ -17,23 +26,36 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let userInfo of filteredUsers | async; index as i">
-                <th scope="row">{{ i + 1 }}</th>
+            <tr *ngFor="let userInfo of filteredUsers">
                 <td>
-                    <ngb-highlight [result]="userInfo.playerName" [term]="filter.value"></ngb-highlight>
+                    <ngb-highlight [result]="userInfo.playerName" [term]="searchValue"></ngb-highlight>
                 </td>
                 <td>
-                    <ngb-highlight [result]="userInfo.userName" [term]="filter.value"></ngb-highlight>
+                    <ngb-highlight [result]="userInfo.userName" [term]="searchValue"></ngb-highlight>
                 </td>
                 <td>
-                    <ngb-highlight [result]="userInfo.phoneNumber" [term]="filter.value"></ngb-highlight>
+                    <ngb-highlight [result]="userInfo.phoneNumber" [term]="searchValue"></ngb-highlight>
                 </td>
                 <td>
-                    <ngb-highlight [result]="userInfo.email" [term]="filter.value"></ngb-highlight>
+                    <ngb-highlight [result]="userInfo.email" [term]="searchValue"></ngb-highlight>
                 </td>
                 <td>
-                    <button class="btn btn-sm" (click)="deleteUser(userInfo)"><i class="las la-trash"></i></button></td>
+                    <button class="btn btn-sm" (click)="editUser(userInfo)"><i class="lar la-edit"></i></button>
+                    <button class="btn btn-sm" (click)="deleteUser(userInfo)"><i class="las la-trash"></i></button>
+                </td>
             </tr>
         </tbody>
     </table>
+    <div class="d-flex justify-content-between p-2">
+        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize" (pageChange)="refreshData()">
+        </ngb-pagination>
+
+        <select class="custom-select" style="width: auto" [(ngModel)]="pageSize" (ngModelChange)="refreshData()">
+            <option [ngValue]="15">15 usuarios por página</option>
+            <option [ngValue]="30">30 usuarios por página</option>
+            <option [ngValue]="45">45 usuarios por página</option>
+            <option [ngValue]="60">60 usuarios por página</option>
+        </select>
+    </div>
+    <app-user-form #userForm (userFormAction)="refresh($event)"></app-user-form>
 </div>

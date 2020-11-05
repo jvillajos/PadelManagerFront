@@ -22,6 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RankingComponent } from './components/rankings/ranking/ranking.component';
 import { UserManagementComponent } from './components/users/userManagement.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserFormComponent } from './components/users/user-form/user-form/user-form.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AlertComponent,
     RankingFormComponent,
     RankingComponent,
-    UserManagementComponent
+    UserManagementComponent,
+    UserFormComponent
   ],
   imports: [
     CommonModule,

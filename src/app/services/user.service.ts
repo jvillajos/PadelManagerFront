@@ -20,4 +20,12 @@ export class UserService {
   getAllUsers(): Observable<UserInfo[]> {
     return this.http.get<Array<UserInfo>>(`${environment.API_URL}/authentication/GetAllUsers`, {headers: this.headers});
   }
+
+  updateUser(userInfo: UserInfo): Observable<any> {
+    throw new Error('Method not implemented.');
+  }
+  createUser(userInfo: UserInfo): Observable<any> {
+    throw new Error('Method not implemented.');
+  }
+
 }

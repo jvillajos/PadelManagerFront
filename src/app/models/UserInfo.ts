@@ -1,5 +1,5 @@
 export class UserInfo {
-    id: number;
+    id: string;
     userName: string;
     email: string;
     playerName: string;

@@ -14,10 +14,10 @@
                         <p class="card-text">Fecha: {{ ranking.startDate | date:'dd/MM/yyyy' }} - {{ranking.endDate | date:'dd/MM/yyyy'}}</p>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <a [routerLink]="['/ranking', ranking.rankingId]">
+                        <button class="btn pepe" [routerLink]="['/ranking', ranking.rankingId]">
                             <i class="las la-expand"></i>
-                        </a>
-                        <button class="btn" (click)="editRanking(ranking)">
+                        </button>
+                        <button class="btn pepe" (click)="editRanking(ranking)">
                           <i class="lar la-edit"></i>
                         </button>
                     </div>
