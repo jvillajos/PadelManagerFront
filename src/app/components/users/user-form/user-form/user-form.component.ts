@@ -48,11 +48,11 @@ export class UserFormComponent implements OnInit {
 
   save() {
     const userInfo = new UserInfo();
-    userInfo.id = this.userId;
     userInfo.userName = this.userName;
     userInfo.playerName = this.playerName;
     userInfo.email = this.email;
     userInfo.phoneNumber = this.phoneNumber;
+    userInfo.password = 'Cambiar1!';
     if (this.isNew) {
       this.userService.createUser(userInfo)
                         .subscribe(r => {

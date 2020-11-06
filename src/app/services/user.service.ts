@@ -9,7 +9,6 @@ import { UserInfo } from '../models/UserInfo';
   providedIn: 'root'
 })
 export class UserService {
-
   headers: HttpHeaders;
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders()
@@ -22,10 +21,15 @@ export class UserService {
   }
 
   updateUser(userInfo: UserInfo): Observable<any> {
-    throw new Error('Method not implemented.');
+    return this.http.post<any>(`${environment.API_URL}/authentication/UpdateUserInfo`, userInfo, {headers: this.headers});
   }
   createUser(userInfo: UserInfo): Observable<any> {
-    throw new Error('Method not implemented.');
+    return this.http.post<any>(`${environment.API_URL}/authentication/Register`, userInfo, {headers: this.headers});
+  }
+
+  deleteUser(userInfo: UserInfo): Observable<any>{
+    return this.http.delete<any>(`${environment.API_URL}/authentication/DeleteUser`, { params: { userName: userInfo.userName },
+                                                                                       headers: this.headers});
   }
 
 }

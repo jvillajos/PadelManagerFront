@@ -8,8 +8,8 @@
                 </div>
             </div>
             <div class="col4">
-                <button class="btn" (click)="addUser()">
-                    <i class="las la-plus-circle"></i>
+                <button class="btn-circle" (click)="addUser()">
+                    <i class="las la-plus"></i>
                 </button>
             </div>
         </div>
@@ -58,4 +58,5 @@
         </select>
     </div>
     <app-user-form #userForm (userFormAction)="refresh($event)"></app-user-form>
+    <app-messagebox #messageBox (dialogClosed)="deleteUserAction($event)"></app-messagebox>
 </div>

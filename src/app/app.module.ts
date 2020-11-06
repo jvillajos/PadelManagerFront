@@ -23,6 +23,7 @@ import { RankingComponent } from './components/rankings/ranking/ranking.componen
 import { UserManagementComponent } from './components/users/userManagement.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserFormComponent } from './components/users/user-form/user-form/user-form.component';
+import { MessageboxComponent } from './components/shared/messagebox/messagebox/messagebox.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { UserFormComponent } from './components/users/user-form/user-form/user-f
     RankingFormComponent,
     RankingComponent,
     UserManagementComponent,
-    UserFormComponent
+    UserFormComponent,
+    MessageboxComponent
   ],
   imports: [
     CommonModule,

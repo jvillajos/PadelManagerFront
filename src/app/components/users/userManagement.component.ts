@@ -6,6 +6,7 @@ import { FormControl } from '@angular/forms';
 import { startWith, map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { UserFormComponent } from './user-form/user-form/user-form.component';
+import { MessageboxComponent } from '../shared/messagebox/messagebox/messagebox.component';
 
 @Component({
   selector: 'app-user-management',
@@ -14,6 +15,7 @@ import { UserFormComponent } from './user-form/user-form/user-form.component';
 })
 export class UserManagementComponent implements OnInit {
   @ViewChild('userForm') userForm: UserFormComponent;
+  @ViewChild('messageBox') messageBox: MessageboxComponent;
 
   users: Array<UserInfo>;
   filteredUsers: UserInfo[];
@@ -22,6 +24,7 @@ export class UserManagementComponent implements OnInit {
   private _pageSize = 20;
   private _searchValue = '';
   collectionSize = 0;
+  userToDelete: UserInfo;
 
   get page(): number {
     return this._page;
@@ -91,6 +94,19 @@ export class UserManagementComponent implements OnInit {
   }
 
   deleteUser(userInfo: UserInfo){
+    this.messageBox.Title = 'Borrar Usuario';
+    this.messageBox.Message = `¿Esta seguro que desea borrar el usuario: ${userInfo.playerName}?`;
+    this.userToDelete = userInfo;
+    this.messageBox.Open();
+  }
+  deleteUserAction(dc: boolean) {
+    if (dc){
+      this.userService.deleteUser(this.userToDelete).subscribe(d => {
+        this.refresh(true);
+        this.alertService.success('Usuario borrado!');
+        this.userToDelete = undefined;
+      });
+    }
   }
 
   editUser(userInfo: UserInfo) {
@@ -98,7 +114,7 @@ export class UserManagementComponent implements OnInit {
   }
 
   addUser() {
-
+    this.openForm(undefined);
   }
 
 

@@ -4,4 +4,5 @@ export class UserInfo {
     email: string;
     playerName: string;
     phoneNumber: string;
+    password: string;
 }
