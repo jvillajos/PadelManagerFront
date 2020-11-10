@@ -2,18 +2,54 @@
     <h3 class="display-5">{{ranking.name}}</h3>
 
     <div class="row mt-2">
-        <div class="col-6">
-            <ul class="list-group">
-                <li class="list-group-item active" *ngFor="let rg of rankingGroups">{{rg.name}}}</li>
-            </ul>
-        </div>
-        <div class="col-6">
-            <ul class="list-group">
-                <li class="list-group-item active" *ngFor="let couple of couples">{{couple.name}}}</li>
-            </ul>
-        </div>
-    </div>
-    <div class="container-fluid">
+        <div class="col-12">
 
+
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="groups-tab" data-toggle="tab" href="#groups" role="tab" aria-controls="groups" aria-selected="true">Grupos de ranking</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="couples-tab" data-toggle="tab" href="#couples" role="tab" aria-controls="couples" aria-selected="false">Parejas</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="players-tab" data-toggle="tab" href="#players" role="tab" aria-controls="players" aria-selected="false">Jugadores</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="groups" role="tabpanel" aria-labelledby="home-tab">
+                    <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let rg of rankingGroups">{{rg.name}}}</li>
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="couples" role="tabpanel" aria-labelledby="profile-tab">
+                    <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let couple of couples">{{couple.name}}}</li>
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="players" role="tabpanel" aria-labelledby="contact-tab">
+                    <div class="row">
+                        <div class="table-responsive-sm">
+                            <table class="table table-sm table-striped">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th scope="col">Usuario</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let userInfo of rankingUsers">
+                                        <td>
+                                            <ngb-highlight [result]="userInfo.playerName"></ngb-highlight>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
+
 </div>

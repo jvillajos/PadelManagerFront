@@ -24,6 +24,7 @@ import { UserManagementComponent } from './components/users/userManagement.compo
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserFormComponent } from './components/users/user-form/user-form/user-form.component';
 import { MessageboxComponent } from './components/shared/messagebox/messagebox/messagebox.component';
+import { CoupleManagementComponent } from './components/couples/couple-management/couple-management.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { MessageboxComponent } from './components/shared/messagebox/messagebox/m
     RankingComponent,
     UserManagementComponent,
     UserFormComponent,
-    MessageboxComponent
+    MessageboxComponent,
+    CoupleManagementComponent
   ],
   imports: [
     CommonModule,

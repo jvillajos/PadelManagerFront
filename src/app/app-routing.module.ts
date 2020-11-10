@@ -5,12 +5,14 @@ import { RankingsComponent } from './components/rankings/rankings.component';
 import { AuthGuard } from './components/auth/auth.guard';
 import { RankingComponent } from './components/rankings/ranking/ranking.component';
 import { UserManagementComponent } from './components/users/userManagement.component';
+import { CoupleManagementComponent } from './components/couples/couple-management/couple-management.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard]},
   { path: 'rankings', component: RankingsComponent },
   { path: 'ranking/:id', component: RankingComponent },
   { path: 'users', component: UserManagementComponent },
+  { path: 'couples', component: CoupleManagementComponent },
   { path: 'auth', loadChildren: './components/auth/auth.module#AuthModule'},
   { path: '**', pathMatch: 'full', redirectTo: ''}
 ];
