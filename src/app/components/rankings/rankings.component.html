@@ -1,12 +1,13 @@
-<div class="container-fluid mt-2">
-    <div class="d-flex justify-content-end">
+<div class="mt-2">
+    <div class="d-flex flex-row-reverse">
         <button class="btn btn-outline-primary" (click)="addRanking()">
-            <i class="las la-plus-circle"></i>
+          <i class="las la-plus-circle"></i>
         </button>
     </div>
+
     <div class="d-flex justify-content-center m-3">
-        <div class="row mt-2">
-            <div class="col-sm-4" *ngFor="let ranking of rankings">
+        <div class="d-flex flex-wrap">
+            <div class="d-flex flex-column ml-0 mr-1" *ngFor="let ranking of rankings">
                 <div class="card mt-2">
                     <div class="card-body">
                         <h5 class="card-title">{{ranking.rankingName}}</h5>
@@ -15,11 +16,11 @@
                     </div>
                     <div class="d-flex justify-content-end">
                         <button class="btn pepe" [routerLink]="['/ranking', ranking.rankingId]">
-                            <i class="las la-expand"></i>
-                        </button>
+                        <i class="las la-expand"></i>
+                    </button>
                         <button class="btn pepe" (click)="editRanking(ranking)">
-                          <i class="lar la-edit"></i>
-                        </button>
+                      <i class="lar la-edit"></i>
+                    </button>
                     </div>
                 </div>
             </div>
