@@ -1,10 +1,12 @@
+import { RankingGroup } from './RankingGroup';
 export class Ranking {
-    rankingId: number;
+    id: number;
     userName: string;
-    rankingName: string;
+    name: string;
     description: string;
     location: string;
     cp: number;
     startDate: Date;
     endDate: Date;
+    groups: RankingGroup[];
 }

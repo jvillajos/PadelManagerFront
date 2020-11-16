@@ -19,7 +19,7 @@ export class RankingsComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    const username = this.authService.currentUserValue.userName;
+    const username = this.authService.currentUserValue?.userName;
     if (username !== undefined) {
       this.rankingService.getRankingsByUser(this.authService.currentUserValue.userName)
                         .subscribe(p =>
@@ -32,7 +32,6 @@ export class RankingsComponent implements OnInit {
 
   addRanking(): void {
     this.openForm(undefined);
-    console.log('Añadir Ranking');
   }
 
   editRanking(ranking: any): void {

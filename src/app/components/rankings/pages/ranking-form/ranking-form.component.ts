@@ -5,8 +5,7 @@ import { AuthService } from '../../../auth/auth.service';
 
 @Component({
   selector: 'app-ranking-form',
-  templateUrl: './ranking-form.component.html',
-  styleUrls: ['./ranking-form.component.scss']
+  templateUrl: './ranking-form.component.html'
 })
 export class RankingFormComponent  implements OnChanges, OnInit {
 
@@ -41,8 +40,8 @@ export class RankingFormComponent  implements OnChanges, OnInit {
       this.isNew = false;
       this.action = 'Actualizar';
       this.title = 'Editar Ranking';
-      this.rankingId = ranking.rankingId;
-      this.rankingName = ranking.rankingName;
+      this.rankingId = ranking.id;
+      this.rankingName = ranking.name;
       this.rankingStartDate = ranking.startDate;
       this.rankingEndDate = ranking.endDate;
     }
@@ -51,9 +50,9 @@ export class RankingFormComponent  implements OnChanges, OnInit {
 
   save() {
     const ranking = new Ranking();
-    ranking.rankingId = this.rankingId;
+    ranking.id = this.rankingId;
     ranking.userName = this.authService.getCurrentUser().userName;
-    ranking.rankingName = this.rankingName;
+    ranking.name = this.rankingName;
     ranking.description = '';
     ranking.location = '';
     ranking.cp = 0;

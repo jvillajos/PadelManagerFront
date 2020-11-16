@@ -25,6 +25,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UserFormComponent } from './components/users/user-form/user-form/user-form.component';
 import { MessageboxComponent } from './components/shared/messagebox/messagebox/messagebox.component';
 import { CoupleManagementComponent } from './components/couples/couple-management/couple-management.component';
+import { CoupleFormComponent } from './components/rankings/pages/couple-form/couple-form.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 
 @NgModule({
@@ -39,7 +41,8 @@ import { CoupleManagementComponent } from './components/couples/couple-managemen
     UserManagementComponent,
     UserFormComponent,
     MessageboxComponent,
-    CoupleManagementComponent
+    CoupleManagementComponent,
+    CoupleFormComponent
   ],
   imports: [
     CommonModule,
@@ -51,7 +54,8 @@ import { CoupleManagementComponent } from './components/couples/couple-managemen
     ModalModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    NgSelectModule
   ],
   providers: [
     CookieService,

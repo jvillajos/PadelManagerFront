@@ -21,11 +21,6 @@ export class UserService {
     return this.http.get<Array<UserInfo>>(`${environment.API_URL}/authentication/GetAllUsers`, {headers: this.headers});
   }
 
-  getCouplesByRanking(rankingId: number): Observable<Couple[]> {
-    return this.http.get<Array<Couple>>(`${environment.API_URL}/couples/GetCouples`, { params : { rankingId: rankingId.toString() },
-                                                                                       headers: this.headers});
-  }
-
   getUsersByRanking(rankingId: number): Observable<UserInfo[]> {
     const params = new HttpParams().set('rankingId', rankingId.toString());
     return this.http.get<Array<UserInfo>>(`${environment.API_URL}/authentication/GetUsersByRanking`, { params,

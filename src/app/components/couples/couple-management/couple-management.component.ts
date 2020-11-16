@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user.service';
+import { CouplesService } from '../../../services/couples.service';
 
 @Component({
   selector: 'app-couple-management',
@@ -10,10 +11,10 @@ export class CoupleManagementComponent implements OnInit {
   @Input()
   rankingId: number;
 
-  constructor(private userService: UserService) { }
+  constructor(private coupleService: CouplesService) { }
 
   ngOnInit(): void {
-    this.userService.getCouplesByRanking(this.rankingId);
+    this.coupleService.getCouplesByRanking(this.rankingId);
   }
 
 }

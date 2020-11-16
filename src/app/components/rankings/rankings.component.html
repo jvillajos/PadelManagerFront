@@ -10,7 +10,7 @@
             <div class="d-flex flex-column ml-0 mr-1" *ngFor="let ranking of rankings">
                 <div class="card mt-2">
                     <div class="card-body">
-                        <h5 class="card-title">{{ranking.rankingName}}</h5>
+                        <h5 class="card-title">{{ranking.name}}</h5>
                         <p class="card-text">{{ranking.description}}</p>
                         <p class="card-text">Fecha: {{ ranking.startDate | date:'dd/MM/yyyy' }} - {{ranking.endDate | date:'dd/MM/yyyy'}}</p>
                     </div>

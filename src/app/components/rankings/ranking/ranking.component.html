@@ -1,5 +1,5 @@
 <div class="container-flex mt-3">
-    <h3 class="display-5">{{ranking.name}}</h3>
+    <h3 class="display-5">{{ranking?.name}}</h3>
 
     <div class="row mt-2">
         <div class="col-12">
@@ -19,13 +19,43 @@
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="groups" role="tabpanel" aria-labelledby="home-tab">
                     <ul class="list-group">
-                        <li class="list-group-item" *ngFor="let rg of rankingGroups">{{rg.name}}}</li>
+                        <li class="list-group-item" *ngFor="let rg of rankingGroups">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{rg.name}}</h5>
+                                <!-- <small>Grupo ???</small> -->
+                            </div>
+                        </li>
                     </ul>
                 </div>
                 <div class="tab-pane fade" id="couples" role="tabpanel" aria-labelledby="profile-tab">
-                    <ul class="list-group">
-                        <li class="list-group-item" *ngFor="let couple of couples">{{couple.name}}}</li>
-                    </ul>
+                    <div class="d-flex flex-row-reverse">
+                        <button class="btn btn-outline-primary" (click)="addCouple()">
+                          <i class="las la-plus-circle"></i>
+                        </button>
+                    </div>
+                    <div class="d-flex justify-content-center flex-wrap m-3">
+                        <div class="flex-fill ml-0 mr-1" *ngFor="let couple of couples">
+                            <div class="card pareja mt-2">
+                                <div class="card-body">
+                                    <div class="d-flex w-100 justify-content-between">
+                                        <h6 class="card-title">{{couple.name}}</h6>
+                                        <small>Grupo ???</small>
+                                    </div>
+                                    <div class="d-flex" *ngFor="let player of couple.users">
+                                        <small>{{player.playerName}}</small>
+                                    </div>
+
+
+                                    <!-- <p class="card-text" *ngFor="let player of couple.users">{{player.playerName}}</p> -->
+                                </div>
+                                <div class="d-flex justify-content-end">
+                                    <button class="btn pepe" (click)="editCouple(couple)">
+                                            <i class="lar la-edit"></i>
+                                        </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="players" role="tabpanel" aria-labelledby="contact-tab">
                     <div class="row">
@@ -51,5 +81,5 @@
             </div>
         </div>
     </div>
-
+    <app-couple-form #coupleForm (coupleAction)="refreshCouples($event)"></app-couple-form>
 </div>

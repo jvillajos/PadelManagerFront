@@ -1,3 +1,26 @@
+@import "~@ng-select/ng-select/themes/default.theme.css";
+.pareja {
+    min-width: 250px;
+    height: 110px;
+    max-width: 300px;
+}
+
+.dropdown-menu {
+    z-index: 100 !important;
+}
+
+.ng-dropdown-panel {
+    z-index: 2000 !important;
+}
+
+ng-dropdown-panel-items {
+    z-index: 2000 !important;
+}
+
+body.modal-open .ng-dropdown-panel {
+    z-index: 2000 !important;
+}
+
 @mixin responsive {
     @media (max-width: 1020px) {
         @content;
