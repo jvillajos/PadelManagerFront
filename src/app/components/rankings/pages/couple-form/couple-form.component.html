@@ -22,12 +22,21 @@
                 </div>
                 <div class="col-6 align-self-center mb-2 mt-2">
                     <span class="form-title">
+                        Grupo
+                    </span>
+                </div>
+                <div class="col-6 align-self-center mb-2 mt-2">
+                    <ng-select [(ngModel)]="selectedGroup" [items]="groups" bindLabel="name" bindValue="id" [closeOnSelect]="false" [appendTo]="'body'">
+                    </ng-select>
+                </div>
+
+                <div class="col-6 align-self-center mb-2 mt-2">
+                    <span class="form-title">
                         Jugadores
                     </span>
                 </div>
                 <div class="col-6 align-self-center mb-2 mt-2">
                     <ng-select [(ngModel)]="selectedPlayers" [multiple]="true" [items]="players" bindLabel="playerName" bindValue="id" [closeOnSelect]="false" [appendTo]="'body'">
-
                     </ng-select>
                 </div>
 

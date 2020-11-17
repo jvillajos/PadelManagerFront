@@ -4,5 +4,6 @@ export class Couple {
     rankingId: number;
     rankingGroupId: number;
     name: string;
+    displayName: string;
     users: UserInfo[];
 }

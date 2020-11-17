@@ -56,6 +56,7 @@ export class RankingComponent implements OnInit {
 
   openCoupleForm(couple: Couple) {
     this.coupleForm.players = this.rankingUsers;
+    this.coupleForm.groups = this.rankingGroups;
     this.coupleForm.rankingId = this.rankingId;
     if (!couple){
       this.coupleForm.open(undefined);

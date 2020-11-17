@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angu
 import { Couple } from 'src/app/models/Couple';
 import { CouplesService } from '../../../../services/couples.service';
 import { UserInfo } from 'src/app/models/UserInfo';
+import { RankingGroup } from '../../../../models/RankingGroup';
 
 @Component({
   selector: 'app-couple-form',
@@ -18,10 +19,14 @@ export class CoupleFormComponent implements OnInit {
   coupleName: string;
   players: UserInfo[];
   selectedPlayers: string[];
+  selectedGroup: number;
   isNew: boolean;
 
   @Input()
   rankingId: number;
+
+  @Input()
+  groups: RankingGroup[];
 
   @Output()
   coupleAction = new EventEmitter<boolean>();
@@ -39,6 +44,7 @@ export class CoupleFormComponent implements OnInit {
       this.action = 'Actualizar';
       this.title = 'Editar Pareja';
       this.coupleId = couple.id;
+      this.selectedGroup = couple.rankingGroupId;
       this.coupleName = couple.name;
       this.selectedPlayers = couple.users.map(u => u.id);
     }
@@ -50,6 +56,7 @@ export class CoupleFormComponent implements OnInit {
     couple.id = this.coupleId;
     couple.name = this.coupleName;
     couple.rankingId = this.rankingId;
+    couple.rankingGroupId = this.selectedGroup;
     couple.users = this.players.filter(p => this.selectedPlayers.includes(p.id));
     if (this.isNew) {
       this.couplesService.addCoupleToRanking(couple)
