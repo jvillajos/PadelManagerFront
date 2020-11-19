@@ -1,9 +1,10 @@
 import { UserInfo } from './UserInfo';
 export class Couple {
     id: number;
-    rankingId: number;
-    rankingGroupId: number;
     name: string;
     displayName: string;
-    users: UserInfo[];
+    rankingId: number;
+    rankingGroupId: number;
+    rankingGroupName: string;
+    users: Array<UserInfo>;
 }

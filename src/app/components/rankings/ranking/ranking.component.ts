@@ -35,12 +35,14 @@ export class RankingComponent implements OnInit {
     this.rankingService.getRankingById(this.rankingId).subscribe(r => {
       this.ranking = r;
       this.rankingGroups = r.groups;
-      console.log(this.ranking);
+      this.couples = r.couples.sort((a, b) => a.rankingGroupName > b.rankingGroupName ? 1 : -1);
+      console.log(r);
+      console.log(this.couples);
     });
     this.userService.getUsersByRanking(this.rankingId).subscribe(u => {
       this.rankingUsers = u.slice();
     });
-    this.refreshCouples(true);
+    //this.refreshCouples(true);
   }
 
   addCouple(): void {

@@ -1,3 +1,4 @@
+import { Couple } from './Couple';
 import { RankingGroup } from './RankingGroup';
 export class Ranking {
     id: number;
@@ -9,4 +10,5 @@ export class Ranking {
     startDate: Date;
     endDate: Date;
     groups: RankingGroup[];
+    couples: Couple[];
 }
