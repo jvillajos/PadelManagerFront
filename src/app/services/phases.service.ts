@@ -1,0 +1,30 @@
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { Phase } from '../models/Phase';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class PhasesService {
+  headers: HttpHeaders;
+  constructor(private http: HttpClient) {
+    this.headers = new HttpHeaders()
+            .set('Content-Type', 'application/json')
+            .set('Accept', 'application/json');
+   }
+
+  getPhasesByRankingId(rankingId: number): Observable<Phase[]> {
+    const params = new HttpParams().append('rankingId', rankingId.toString());
+    return this.http.get<Array<Phase>>(`${environment.API_URL}/phase/GetPhasesByRankingId`, { params, headers: this.headers });
+  }
+
+  addPhaseToRanking(phase: Phase): Observable<any> {
+    return this.http.post<any>(`${environment.API_URL}/phase/CreatePhase`, phase, { headers: this.headers});
+  }
+
+  updatePhaseToRanking(phase: Phase): Observable<any> {
+    return this.http.post<any>(`${environment.API_URL}/phase/UpdatePhase`, phase, { headers: this.headers});
+  }
+}

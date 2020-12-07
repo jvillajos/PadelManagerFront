@@ -1,0 +1,51 @@
+<modal #myModal modalClass="modal-dialog-centered" class="hide-footer modal_in_modal reduced__modal" [hideCloseButton]="true" (onClose)="resetData()">
+    <modal-header class="col-12 d-flex justify-content-between align-items-center px-3">
+        <span class="d-inline mb-0" style="font-weight: bold; font-size: 1.2rem; color: #3f4047">
+        {{title}}
+      </span>
+        <div class="d-flex align-items-center">
+            <a href="" class="text-muted h4 mb-0" (click)="$event.preventDefault(); myModal.close();">
+                <i class="la la-close"></i>
+            </a>
+        </div>
+    </modal-header>
+    <modal-content>
+        <div class="row aling-items-center m-0">
+            <ng-container>
+                <div class="col-6 align-self-center mb-2 mt-2">
+                    <span class="form-title">
+                      Nombre de la Fase
+                    </span>
+                </div>
+                <div class="col-6 align-self-center mb-2 mt-2">
+                    <input class="form-control" type="text" placeholder="Nombre de la fase" [(ngModel)]="phaseName" />
+                </div>
+                <div class="col-6 align-self-center mb-2 mt-2">
+                    <span class="form-title">
+                    Fecha de inicio
+                  </span>
+                </div>
+                <div class="col-6 align-self-center mb-2 mt-2">
+                    <input class="form-control" type="date" placeholder="Fecha de inicio" [ngModel]="startDate | date:'yyyy-MM-dd'" (ngModelChange)="startDate = $event" />
+                </div>
+                <div class="col-6 align-self-center mb-2 mt-2">
+                    <span class="form-title">
+                  Fecha de fin
+                </span>
+                </div>
+                <div class="col-6 align-self-center mb-2 mt-2">
+                    <input class="form-control" type="date" placeholder="Fecha de fin" [ngModel]="endDate | date:'yyyy-MM-dd'" (ngModelChange)="endDate = $event" />
+                </div>
+
+                <div class="col-12 d-flex justify-content-end mt-3">
+                    <button type="button" (click)="myModal.close();" class="btn btn-cancel font-weight-bold mr-3">
+                      Cancelar
+                    </button>
+                    <button class="btn btn-primary font-weight-bold" [disabled]="selectedPlayers && selectedPlayers.length < 2" (click)="save()">
+                      {{ action }}
+                    </button>
+                </div>
+            </ng-container>
+        </div>
+    </modal-content>
+</modal>

@@ -27,6 +27,7 @@ import { MessageboxComponent } from './components/shared/messagebox/messagebox/m
 import { CoupleManagementComponent } from './components/couples/couple-management/couple-management.component';
 import { CoupleFormComponent } from './components/rankings/pages/couple-form/couple-form.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { PhaseFormComponent } from './components/rankings/pages/phase-form/phase-form.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     UserFormComponent,
     MessageboxComponent,
     CoupleManagementComponent,
-    CoupleFormComponent
+    CoupleFormComponent,
+    PhaseFormComponent
   ],
   imports: [
     CommonModule,
