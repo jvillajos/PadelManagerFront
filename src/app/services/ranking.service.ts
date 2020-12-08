@@ -37,7 +37,7 @@ export class RankingService {
   }
 
   getRankingGroupsByUser(username: string): Observable<RankingGroup[]> {
-    const params = new HttpParams().append('username', username);
+    const params = new HttpParams().append('userName', username);
     return this.http.get<Array<RankingGroup>>(`${environment.API_URL}/ranking/GetRankingGroupsByUser`, { params, headers: this.headers });
   }
 

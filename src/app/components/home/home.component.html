@@ -7,7 +7,27 @@
         </ul>
     </div>
     <div class="container">
-        <h1 class="display-4">Fluid jumbotron</h1>
-        <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+        <ul class="list-group" *ngFor="let match of rankingGroupMatches">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <ul *ngFor="let player of match.couple1.displayName">
+                        <li>{{player}}</li>
+                    </ul>
+                    <!-- <span class="badge badge-pill" *ngFor="let player of match.couple1.displayName">player</span> -->
+                    <span class="badge badge-primary badge-pill" *ngIf='match.couple1Set1Result!==null'>{{ match.couple1Set1Result }}</span>
+                    <span class="badge badge-primary badge-pill" *ngIf='match.couple1Set1Result===null'>-</span>
+
+                </div>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <div>
+                    <ul *ngFor="let player1 of match.couple2.displayName">
+                        <li>{{player1}}</li>
+                    </ul>
+                    <span class="badge badge-primary badge-pill" *ngIf='match.couple1Set1Result!==null'>{{ match.couple2Set1Result }}</span>
+                    <span class="badge badge-primary badge-pill" *ngIf='match.couple1Set1Result===null'>-</span>
+                </div>
+            </li>
+        </ul>
     </div>
 </div>
