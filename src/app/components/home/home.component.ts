@@ -8,7 +8,8 @@ import { Match } from 'src/app/models/Match';
 
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html'
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
 
@@ -50,12 +51,6 @@ export class HomeComponent implements OnInit {
     this.phasesService.getMatchesByPhase(2)
       .subscribe(m => {
         this.matches = m.slice();
-        this.matches.forEach(m => {
-            m.couple1.displayName = m.couple1.displayName.split(' - ');
-            m.couple2.displayName = m.couple2.displayName.split(' - ');
-
-            
-        });
         if (this.rankingGroups.length > 0 && this.rankingGroups[0].active){
           this.rankingGroupMatches = this.matches.filter(m => m.rankingGroupId === this.rankingGroups[0].id);
 

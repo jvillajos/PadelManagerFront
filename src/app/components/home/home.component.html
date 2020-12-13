@@ -1,4 +1,4 @@
-<div class="container-fluid mt-3">
+<div class="flex mt-3">
     <div class="row">
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
             <li class="nav-item" role="presentation" *ngFor="let rankingGroup of rankingGroups">
@@ -6,28 +6,23 @@
             </li>
         </ul>
     </div>
-    <div class="container">
-        <ul class="list-group" *ngFor="let match of rankingGroupMatches">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                <div>
-                    <ul *ngFor="let player of match.couple1.displayName">
-                        <li>{{player}}</li>
-                    </ul>
-                    <!-- <span class="badge badge-pill" *ngFor="let player of match.couple1.displayName">player</span> -->
-                    <span class="badge badge-primary badge-pill" *ngIf='match.couple1Set1Result!==null'>{{ match.couple1Set1Result }}</span>
-                    <span class="badge badge-primary badge-pill" *ngIf='match.couple1Set1Result===null'>-</span>
+    <div class="flex">
+        <div class="row match mt-1" *ngFor="let match of rankingGroupMatches">
+            <div class="col-5 text-center mt-2">
+                <p class="long-and-truncated" *ngFor="let user of match.couple1.playerNames">{{user}}</p>
+            </div>
+            <div class="col-1 matchResultLeft bg-primary">
+                <h3 class="text-light " *ngIf='match.couple1Set1Result!==null'>{{ match.couple1Set1Result }}</h3>
+                <h3 class="text-light" *ngIf='match.couple1Set1Result===null'>-</h3>
+            </div>
 
-                </div>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                <div>
-                    <ul *ngFor="let player1 of match.couple2.displayName">
-                        <li>{{player1}}</li>
-                    </ul>
-                    <span class="badge badge-primary badge-pill" *ngIf='match.couple1Set1Result!==null'>{{ match.couple2Set1Result }}</span>
-                    <span class="badge badge-primary badge-pill" *ngIf='match.couple1Set1Result===null'>-</span>
-                </div>
-            </li>
-        </ul>
+            <div class="col-1 matchResultRight bg-primary">
+                <h3 class="text-light" *ngIf='match.couple2Set1Result!==null'>{{ match.couple2Set1Result }}</h3>
+                <h3 class="text-light" *ngIf='match.couple2Set1Result===null'>-</h3>
+            </div>
+            <div class="col-5 text-center mt-2">
+                <p class="long-and-truncated" *ngFor="let user of match.couple2.playerNames">{{user}}</p>
+            </div>
+        </div>
     </div>
 </div>

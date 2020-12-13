@@ -1,0 +1,37 @@
+p {
+    line-height: 1.1;
+}
+
+.row.match {
+    border-style: solid;
+    border-color: grey;
+    border-width: 1px;
+    border-radius: 1.25rem;
+    font-size: xx-small;
+}
+
+.matchResultLeft {
+    border-style: solid;
+    border-right: gray;
+    border-top: transparent;
+    border-bottom: transparent;
+    border-left: transparent;
+    border-width: 1px;
+    font-size: small;
+}
+
+.matchResultRight {
+    border-style: solid;
+    border-right: gray;
+    border-bottom: gray;
+    border-top: gray;
+    border-width: 1px;
+    font-size: small;
+}
+
+.long-and-truncated {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

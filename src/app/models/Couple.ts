@@ -8,4 +8,5 @@ export class Couple {
     rankingGroupId: number;
     rankingGroupName: string;
     users: Array<UserInfo>;
+    playerNames: Array<string>;
 }
