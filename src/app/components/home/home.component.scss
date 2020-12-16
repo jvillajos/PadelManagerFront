@@ -1,13 +1,20 @@
 p {
-    line-height: 1.1;
+    line-height: 1;
+    font-size: smaller;
 }
 
-.row.match {
-    border-style: solid;
-    border-color: grey;
-    border-width: 1px;
-    border-radius: 1.25rem;
-    font-size: small;
+.match {
+    min-width: 320px;
+    min-height: 160px;
+    margin-top: 5px;
+}
+
+.couple1 {
+    min-height: 60px;
+}
+
+.couple2 {
+    min-height: 60px;
 }
 
 .matchResultLeft {
@@ -28,8 +35,9 @@ p {
 }
 
 .long-and-truncated {
-    flex: 1;
-    white-space: nowrap;
-    overflow: hidden;
+    // flex: 1;
+    // white-space: nowrap;
+    // overflow: hidden;
     text-overflow: ellipsis;
+    margin-bottom: 2px;
 }
