@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit {
               private authService: AuthService) {
     this.rankingGroups = new Array<RankingGroup>();
     this.rankingId = 1;
+    this.currentPhase = null;
    }
 
   ngOnInit(): void {
@@ -52,11 +53,8 @@ export class HomeComponent implements OnInit {
       .subscribe(m => {
         this.matches = m.slice();
         if (this.rankingGroups.length > 0 && this.rankingGroups[0].active){
-          this.rankingGroupMatches = this.matches.filter(m => m.rankingGroupId === this.rankingGroups[0].id);
-
-          console.log(this.rankingGroupMatches);
+          this.rankingGroupMatches = this.matches.filter(m => m.rankingGroupId === this.rankingGroups[0].id); 
         }
-        console.log(this.matches);
       });
   }
 
@@ -65,17 +63,17 @@ export class HomeComponent implements OnInit {
       .subscribe(p => {
         this.rankingPhases = p.slice();
         if (this.rankingPhases.length > 0){
-          this._selectedPhase = this.rankingPhases[0];
+          this.SelectedPhase = this.rankingPhases[0];
         }
       });
   }
 
-  private get _selectedPhase(): Phase
+  get SelectedPhase(): Phase
   {
       return this.currentPhase;
   }
 
-  private set _selectedPhase(phase: Phase)
+  set SelectedPhase(phase: Phase)
   {
       this.currentPhase = phase;
       this.GetMatches(this.currentPhase.id);

@@ -1,0 +1,71 @@
+<div class="card match">
+    <div class="card-header d-flex justify-content-between align-items-center">
+        Partido {{data.isPlayed ? 'Jugado "' + (data.updateDate|date: 'dd-MM-yyyy') +'"': 'no jugado'}}
+        <div>
+            <button type="button" class="btn p-0" (click)="isEditing = !isEditing" *ngIf="!isEditing">
+                <i class="las la-edit"></i>
+            </button>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row mt-2">
+            <div class="col-8 couple1 pr-0">
+                <div class="long-and-truncated" *ngFor="let user of data.couple1.playerNames">{{user}}</div>
+            </div>
+            <div class="col-4">
+                <input class="form-control" type="number" *ngIf='isEditing' [(ngModel)]='data.couple1Set1Result' />
+                <h5 class="text-primary" *ngIf='!isEditing && data.couple1Set1Result!==null'>{{ data.couple1Set1Result }}</h5>
+                <h5 class="text-primary" *ngIf='!isEditing && data.couple1Set1Result===null'>-</h5>
+            </div>
+            <!-- <div class="col-2  pr-0">
+                <input class="form-control" type="number" *ngIf='isEditing' />
+                <h5 class="text-primary" *ngIf='!isEditing && data.couple1Set1Result!==null'>{{ data.couple1Set1Result }}</h5>
+                <h5 class="text-primary" *ngIf='!isEditing && data.couple1Set1Result===null'>-</h5>
+            </div>
+            <div class="col-2  pr-0">
+                <input class="form-control" type="number" *ngIf='isEditing' />
+                <h5 class="text-primary" *ngIf='!isEditing && data.couple1Set1Result!==null'>{{ data.couple1Set1Result }}</h5>
+                <h5 class="text-primary" *ngIf='!isEditing && data.couple1Set1Result===null'>-</h5>
+            </div> -->
+        </div>
+        <hr class="m-1" />
+        <div class="row mt-2">
+            <div class="col-8 couple2 pr-0">
+                <p class="long-and-truncated" *ngFor="let user of data.couple2.playerNames ">{{user}}</p>
+            </div>
+            <div class="col-4">
+                <input class="form-control" type="number" *ngIf='isEditing' [(ngModel)]='data.couple2Set1Result' />
+                <h5 class="text-primary" *ngIf='!isEditing && data.couple2Set1Result!==null'>{{ data.couple2Set1Result }}</h5>
+                <h5 class="text-primary" *ngIf='!isEditing && data.couple2Set1Result===null'>-</h5>
+            </div>
+            <!-- <div class="col-2 pr-0">
+                <input class="form-control" type="number" *ngIf='isEditing' />
+                <h5 class="text-primary" *ngIf='!isEditing && data.couple2Set1Result!==null'>{{ data.couple2Set1Result }}</h5>
+                <h5 class="text-primary" *ngIf='!isEditing && data.couple2Set1Result===null'>-</h5>
+            </div>
+            <div class="col-2 pr-0">
+                <input class="form-control" type="number" *ngIf='isEditing' />
+                <h5 class="text-primary" *ngIf='!isEditing && data.couple2Set1Result!==null'>{{ data.couple2Set1Result }}</h5>
+                <h5 class="text-primary" *ngIf='!isEditing && data.couple2Set1Result===null'>-</h5>
+            </div> -->
+        </div>
+        <hr class="m-1" *ngIf="isEditing" />
+        <div class="row mt-2" *ngIf="isEditing">
+            <div class="col-4">Incidencias</div>
+            <div class="col-8">
+                <select name="miselect" [(ngModel)]="incident">
+                    <option [value]="item" *ngFor="let item of incidents">{{item}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row mt-2 justify-content-end">
+            <button type="button" class="btn" (click)="cancelSave()" *ngIf="isEditing">
+                <i class="las la-times"></i>
+            </button>
+            <button type="button" class="btn" (click)="saveMatch()" *ngIf="isEditing">
+                <i class="las la-save"></i>
+            </button>
+        </div>
+    </div>
+
+</div>

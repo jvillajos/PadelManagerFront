@@ -34,4 +34,8 @@ export class PhasesService {
     const params = new HttpParams().append('phaseId', phaseId.toString());
     return this.http.get<Array<Match>>(`${environment.API_URL}/phase/GetMatchesByPhase`, { params, headers: this.headers });
   }
+
+  updateMatch(match: Match): Observable<any> {
+    return this.http.post<any>(`${environment.API_URL}/phase/UpdateMatch`, match, { headers: this.headers});
+  }
 }
