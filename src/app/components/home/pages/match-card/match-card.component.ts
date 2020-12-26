@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PhasesService } from 'src/app/services/phases.service';
 import { Match } from '../../../../models/Match';
+import { MatchModel } from '../../models/MatchModel';
 
 @Component({
   selector: 'app-match-card',
@@ -15,22 +16,34 @@ export class MatchCardComponent implements OnInit {
   constructor(private phasesService: PhasesService) { }
 
   ngOnInit(): void {
-    this.isEditing = false
     this.incident = this.incidents[0];
   }
 
   @Input()
-  data: Match;
+  data: MatchModel;
+
+  @Output()
+  editingStarted: EventEmitter<boolean> = new EventEmitter();
+
+  editMatch() {
+    this.data.isEditing = true;
+    this.editingStarted.emit(true);
+  }
 
   saveMatch()  {
-      this.phasesService.updateMatch(this.data).subscribe(r => {
-        this.isEditing =false;
+      this.phasesService.updateMatch(this.data.match).subscribe(r => {
+        this.data.isEditing =false;
+        this.editingStarted.emit(false);
+      }, err => {
+        this.data.isEditing = false;
+        this.editingStarted.emit(false);
       });
   }
 
   cancelSave()
   {
-    this.isEditing = false;
+    this.data.isEditing = false;
+    this.editingStarted.emit(false);
   }
 
 }

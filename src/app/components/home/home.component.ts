@@ -5,6 +5,7 @@ import { RankingService } from '../../services/ranking.service';
 import { AuthService } from '../auth/auth.service';
 import { PhasesService } from '../../services/phases.service';
 import { Match } from 'src/app/models/Match';
+import { MatchModel } from './models/MatchModel';
 
 @Component({
   selector: 'app-home',
@@ -16,10 +17,12 @@ export class HomeComponent implements OnInit {
   rankingGroups: Array<RankingGroup>;
   rankingPhases: Array<Phase>;
   matches: Array<Match>;
-  rankingGroupMatches: Array<Match>;
+  rankingGroupMatches: Array<MatchModel>;
   rankingId: number;
   phaseId: number;
   private currentPhase: Phase;
+  private currentRankingGroup: RankingGroup;
+  
 
   constructor(private rankingService: RankingService,
               private phasesService: PhasesService,
@@ -27,6 +30,7 @@ export class HomeComponent implements OnInit {
     this.rankingGroups = new Array<RankingGroup>();
     this.rankingId = 1;
     this.currentPhase = null;
+    this.currentRankingGroup = null;
    }
 
   ngOnInit(): void {
@@ -41,21 +45,47 @@ export class HomeComponent implements OnInit {
                           if (this.rankingGroups.length > 0)
                           {
                             this.rankingGroups[0].active = true;
+                            this.SelectedRankingGroup = this.rankingGroups[0]
                             this.GetPhases(this.rankingId);
                           }
                         });
     }
   }
 
+  onMatchEditingChanged(anyInEdition: boolean) {
+    this.rankingGroupMatches.forEach(f => {
+      if (!anyInEdition){
+        f.isEnabled = true;
+      }
+      else{
+        if (!f.isEditing) {
+          f.isEnabled = false;
+        }
+        else {
+          f.isEnabled = true;
+        }
+      }
+    })
+  }
 
-  private GetMatches(phaseId: number) {
-    this.phasesService.getMatchesByPhase(2)
+  rankingGroupChanged(rankingGroup: RankingGroup) {
+    this.SelectedRankingGroup = rankingGroup;
+  }
+
+
+  private GetMatches(phase: Phase, rankingGroup: RankingGroup) {
+    if (phase!==null) {
+      this.phasesService.getMatchesByPhase(phase.id)
       .subscribe(m => {
         this.matches = m.slice();
-        if (this.rankingGroups.length > 0 && this.rankingGroups[0].active){
-          this.rankingGroupMatches = this.matches.filter(m => m.rankingGroupId === this.rankingGroups[0].id); 
+        if (rankingGroup){
+          this.rankingGroupMatches = this.matches
+                                          .filter(m => m.rankingGroupId === rankingGroup.id)
+                                          .map(f => new MatchModel(f,true)); 
         }
       });
+    }
+    
   }
 
   private GetPhases(rankingId: number) {
@@ -73,9 +103,21 @@ export class HomeComponent implements OnInit {
       return this.currentPhase;
   }
 
+  get SelectedRankingGroup(): RankingGroup
+  {
+    return this.currentRankingGroup;
+  }
+
+  
+  set SelectedRankingGroup(rankingGroup: RankingGroup)
+  {
+    this.currentRankingGroup = rankingGroup;
+    this.GetMatches(this.currentPhase, this.SelectedRankingGroup);
+  }
+
   set SelectedPhase(phase: Phase)
   {
       this.currentPhase = phase;
-      this.GetMatches(this.currentPhase.id);
+      this.GetMatches(this.currentPhase, this.SelectedRankingGroup);
   }
 }

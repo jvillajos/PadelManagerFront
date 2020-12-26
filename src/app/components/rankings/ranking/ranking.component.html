@@ -103,10 +103,14 @@
                                 <span class="badge badge-primary badge-pill">{{ phase.endDate | date:'dd/MM/yyyy'}}</span>
 
                             </div>
-                            <button class="btn-circle">
-                                <i class="las la-edit"></i>
-                            </button>
-
+                            <div class="row">
+                                <button class="btn-circle" (click)="generatePhaseMatches(phase)" *ngIf="phase.matchesGeneratedAt == null">
+                                    <i class="las la-play"></i>
+                                </button>
+                                <button class="btn-circle" (click)="editPhase(phase)">
+                                    <i class="las la-edit"></i>
+                                </button>
+                            </div>
                         </li>
                     </ul>
                 </div>

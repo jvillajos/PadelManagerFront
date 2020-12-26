@@ -43,3 +43,9 @@ p {
     margin-bottom: 2px;
     text-overflow: ellipsis;
 }
+
+.disabled {
+    pointer-events: none;
+    /* for "disabled" effect */
+    opacity: 0.5;
+}

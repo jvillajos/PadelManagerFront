@@ -7,4 +7,5 @@ export class Phase {
     startDate: Date;
     endDate: Date;
     Matches: Match[];
+    matchesGeneratedAt?: Date;
 }

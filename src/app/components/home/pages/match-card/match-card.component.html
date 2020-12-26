@@ -1,8 +1,8 @@
-<div class="card match">
+<div class="card match" [ngClass]="{'disabled':!data.isEnabled}">
     <div class="card-header d-flex justify-content-between align-items-center">
-        Partido {{data.isPlayed ? 'Jugado "' + (data.updateDate|date: 'dd-MM-yyyy') +'"': 'no jugado'}}
+        Partido {{data.match.isPlayed ? 'Jugado "' + (data.match.updateDate|date: 'dd-MM-yyyy') +'"': 'no jugado'}}
         <div>
-            <button type="button" class="btn p-0" (click)="isEditing = !isEditing" *ngIf="!isEditing">
+            <button type="button" class="btn p-0" (click)="editMatch()" *ngIf="!data.isEditing">
                 <i class="las la-edit"></i>
             </button>
         </div>
@@ -10,12 +10,12 @@
     <div class="container-fluid">
         <div class="row mt-2">
             <div class="col-8 couple1 pr-0">
-                <div class="long-and-truncated" *ngFor="let user of data.couple1.playerNames">{{user}}</div>
+                <div class="long-and-truncated" *ngFor="let user of data.match.couple1.playerNames">{{user}}</div>
             </div>
             <div class="col-4">
-                <input class="form-control" type="number" *ngIf='isEditing' [(ngModel)]='data.couple1Set1Result' />
-                <h5 class="text-primary" *ngIf='!isEditing && data.couple1Set1Result!==null'>{{ data.couple1Set1Result }}</h5>
-                <h5 class="text-primary" *ngIf='!isEditing && data.couple1Set1Result===null'>-</h5>
+                <input class="form-control" type="number" *ngIf='data.isEditing' [(ngModel)]='data.match.couple1Set1Result' />
+                <h5 class="text-primary" *ngIf='!data.isEditing && data.match.couple1Set1Result!==null'>{{ data.match.couple1Set1Result }}</h5>
+                <h5 class="text-primary" *ngIf='!data.isEditing && data.match.couple1Set1Result===null'>-</h5>
             </div>
             <!-- <div class="col-2  pr-0">
                 <input class="form-control" type="number" *ngIf='isEditing' />
@@ -31,12 +31,12 @@
         <hr class="m-1" />
         <div class="row mt-2">
             <div class="col-8 couple2 pr-0">
-                <p class="long-and-truncated" *ngFor="let user of data.couple2.playerNames ">{{user}}</p>
+                <p class="long-and-truncated" *ngFor="let user of data.match.couple2.playerNames ">{{user}}</p>
             </div>
             <div class="col-4">
-                <input class="form-control" type="number" *ngIf='isEditing' [(ngModel)]='data.couple2Set1Result' />
-                <h5 class="text-primary" *ngIf='!isEditing && data.couple2Set1Result!==null'>{{ data.couple2Set1Result }}</h5>
-                <h5 class="text-primary" *ngIf='!isEditing && data.couple2Set1Result===null'>-</h5>
+                <input class="form-control" type="number" *ngIf='data.isEditing' [(ngModel)]='data.match.couple2Set1Result' />
+                <h5 class="text-primary" *ngIf='!data.isEditing && data.match.couple2Set1Result!==null'>{{ data.match.couple2Set1Result }}</h5>
+                <h5 class="text-primary" *ngIf='!data.isEditing && data.match.couple2Set1Result===null'>-</h5>
             </div>
             <!-- <div class="col-2 pr-0">
                 <input class="form-control" type="number" *ngIf='isEditing' />
@@ -49,8 +49,8 @@
                 <h5 class="text-primary" *ngIf='!isEditing && data.couple2Set1Result===null'>-</h5>
             </div> -->
         </div>
-        <hr class="m-1" *ngIf="isEditing" />
-        <div class="row mt-2" *ngIf="isEditing">
+        <hr class="m-1" *ngIf="data.isEditing" />
+        <div class="row mt-2" *ngIf="data.isEditing">
             <div class="col-4">Incidencias</div>
             <div class="col-8">
                 <select name="miselect" [(ngModel)]="incident">
@@ -59,10 +59,10 @@
             </div>
         </div>
         <div class="row mt-2 justify-content-end">
-            <button type="button" class="btn" (click)="cancelSave()" *ngIf="isEditing">
+            <button type="button" class="btn" (click)="cancelSave()" *ngIf="data.isEditing">
                 <i class="las la-times"></i>
             </button>
-            <button type="button" class="btn" (click)="saveMatch()" *ngIf="isEditing">
+            <button type="button" class="btn" (click)="saveMatch()" *ngIf="data.isEditing">
                 <i class="las la-save"></i>
             </button>
         </div>

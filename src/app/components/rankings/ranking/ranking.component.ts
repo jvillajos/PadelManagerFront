@@ -69,7 +69,12 @@ export class RankingComponent implements OnInit {
     this.openPhaseForm(phase);
   }
 
+  generatePhaseMatches(phase: Phase): void {
+    this.phasesService.generatePhaseMatches(phase);
+  }
+
   openPhaseForm(phase: Phase) {
+    this.phaseForm.rankingId = this.rankingId;
     this.phaseForm.open(phase);
   }
 

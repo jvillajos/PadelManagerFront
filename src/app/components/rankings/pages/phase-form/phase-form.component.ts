@@ -50,6 +50,9 @@ export class PhaseFormComponent implements OnInit {
     phase.id = this.phaseId;
     phase.name = this.phaseName;
     phase.rankingId = this.rankingId;
+    phase.startDate = this.startDate;
+    phase.endDate = this.endDate;
+    phase.matchesGeneratedAt = null;
     if (this.isNew) {
       this.phasesService.addPhaseToRanking(phase)
                         .subscribe(r => {
