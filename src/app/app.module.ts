@@ -29,6 +29,7 @@ import { CoupleFormComponent } from './components/rankings/pages/couple-form/cou
 import { NgSelectModule } from '@ng-select/ng-select';
 import { PhaseFormComponent } from './components/rankings/pages/phase-form/phase-form.component';
 import { MatchCardComponent } from './components/home/pages/match-card/match-card.component';
+import { ClassificationComponent } from './components/classification/classification.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { MatchCardComponent } from './components/home/pages/match-card/match-car
     CoupleManagementComponent,
     CoupleFormComponent,
     PhaseFormComponent,
-    MatchCardComponent
+    MatchCardComponent,
+    ClassificationComponent
   ],
   imports: [
     CommonModule,

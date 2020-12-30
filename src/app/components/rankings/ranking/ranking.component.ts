@@ -11,6 +11,7 @@ import { Ranking } from '../../../models/Ranking';
 import { PhasesService } from '../../../services/phases.service';
 import { Phase } from '../../../models/Phase';
 import { PhaseFormComponent } from '../pages/phase-form/phase-form.component';
+import { AlertService } from '../../../services/alert.service';
 
 @Component({
   selector: 'app-ranking',
@@ -31,7 +32,8 @@ export class RankingComponent implements OnInit {
               private rankingService: RankingService,
               private userService: UserService,
               private coupleService: CouplesService,
-              private phasesService: PhasesService) {
+              private phasesService: PhasesService,
+              private alertService: AlertService) {
     this.activatedRoute.params.subscribe(params => {
       this.rankingId = params.id;
     });
@@ -70,7 +72,9 @@ export class RankingComponent implements OnInit {
   }
 
   generatePhaseMatches(phase: Phase): void {
-    this.phasesService.generatePhaseMatches(phase);
+    this.phasesService.generatePhaseMatches(phase).subscribe(m => {
+      this.alertService.success("Partidos Generados para la fase:" + phase.name);
+    });
   }
 
   openPhaseForm(phase: Phase) {
