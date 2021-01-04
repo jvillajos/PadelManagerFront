@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Phase } from '../models/Phase';
 import { Match } from '../models/Match';
+import { ClassificationDto } from '../models/Classification';
 
 @Injectable({
   providedIn: 'root'
@@ -41,5 +42,10 @@ export class PhasesService {
 
   updateMatch(match: Match): Observable<any> {
     return this.http.post<any>(`${environment.API_URL}/phase/UpdateMatch`, match, { headers: this.headers});
+  }
+
+  getClassifications(phaseId: number): Observable<ClassificationDto[]> {
+    const params = new HttpParams().append('phaseId', phaseId.toString());
+    return this.http.get<Array<ClassificationDto>>(`${environment.API_URL}/phase/GetClassifications`, { params, headers: this.headers });
   }
 }

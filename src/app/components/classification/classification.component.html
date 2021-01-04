@@ -8,6 +8,50 @@
     </div>
 
     <div class="d-flex">
-
+        <div class="table-responsive-sm">
+            <table class="table table-sm table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Grupo</th>
+                        <th scope="col">Pareja</th>
+                        <th scope="col">Ptos</th>
+                        <th scope="col">PJ</th>
+                        <th scope="col">PG</th>
+                        <th scope="col">PP</th>
+                        <th scope="col">JF</th>
+                        <th scope="col">JC</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let line of classificationLines">
+                        <td>
+                            <ngb-highlight [result]="line.group"></ngb-highlight>
+                        </td>
+                        <td>
+                            <div class="long-and-truncated" *ngFor="let user of line.couplePlayers">{{user}}</div>
+                            <!-- <ngb-highlight [result]="line.couplePlayers"></ngb-highlight> -->
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="line.points"></ngb-highlight>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="line.playedMatches"></ngb-highlight>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="line.winMatches"></ngb-highlight>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="line.lossesMatches"></ngb-highlight>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="line.winGames"></ngb-highlight>
+                        </td>
+                        <td>
+                            <ngb-highlight [result]="line.lossesGames"></ngb-highlight>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

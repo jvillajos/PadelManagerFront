@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ClassificationDto } from 'src/app/models/Classification';
 import { Phase } from 'src/app/models/Phase';
 import { PhasesService } from 'src/app/services/phases.service';
+import { AlertService } from '../../services/alert.service';
 
 @Component({
   selector: 'app-classification',
@@ -11,8 +13,10 @@ export class ClassificationComponent implements OnInit {
   rankingPhases: Array<Phase>;
   private currentPhase: Phase;
   rankingId: number;
+  classificationLines: ClassificationDto[];
 
-  constructor(private phasesService: PhasesService) {
+  constructor(private phasesService: PhasesService,
+             private alertService: AlertService) {
     this.rankingId = 1;
     this.currentPhase = null;
    }
@@ -22,7 +26,7 @@ export class ClassificationComponent implements OnInit {
       .subscribe(p => {
         this.rankingPhases = p.slice();
         if (this.rankingPhases.length > 0){
-          this.SelectedPhase = this.rankingPhases[0];
+          this.SelectedPhase = this.rankingPhases[this.rankingPhases.length -1];
         }
       });
     
@@ -36,6 +40,17 @@ export class ClassificationComponent implements OnInit {
   set SelectedPhase(phase: Phase)
   {
       this.currentPhase = phase;
+      if (this.currentPhase != null){
+        this.phasesService.getClassifications(this.currentPhase.id)
+        .subscribe(c => {
+          this.classificationLines = c.slice();
+        },
+        err => {
+            return this.alertService.success("Classificación no disponible");
+        });
+      }
+      
+
   }
 
 }
