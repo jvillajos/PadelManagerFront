@@ -1,8 +1,8 @@
 <div class="flex mt-3">
     <div class="row justify-content-start">
         <div class="col-0 mt-1">
-            <select class="form-control" name="selectPhases" [(ngModel)]="SelectedPhase">
-                <option [value]="phase" *ngFor="let phase of rankingPhases">{{phase.name}}</option>
+            <select class="form-control" [(ngModel)]="SelectedPhase">
+                <option [ngValue]="phase" *ngFor="let phase of rankingPhases">{{phase.name}}</option>
             </select>
         </div>
     </div>

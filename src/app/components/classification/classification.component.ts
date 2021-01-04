@@ -40,6 +40,7 @@ export class ClassificationComponent implements OnInit {
   set SelectedPhase(phase: Phase)
   {
       this.currentPhase = phase;
+      console.log(this.currentPhase);
       if (this.currentPhase != null){
         this.phasesService.getClassifications(this.currentPhase.id)
         .subscribe(c => {
